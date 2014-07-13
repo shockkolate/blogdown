@@ -1,12 +1,22 @@
 #!/bin/bash
-PANDOC="pandoc -fmarkdown_github+mmd_title_block -thtml5 -s --email-obfuscation=references"
+POST_HTML=/etc/blogdown/post.html
+TEMP_HTML=/etc/blogdown/template.html
+
+if [ -n "$STYLE" ]
+then
+	STYLE="-c $STYLE"
+else
+	STYLE=
+fi
+
+PANDOC="pandoc -fmarkdown_github+mmd_title_block -thtml5 --email-obfuscation=references -s $STYLE"
 
 POSTS=
 if [ $# -eq 0 ]
 then
-	POSTS=`$PANDOC --template /etc/blogdown/post.html`$POSTS
+	POSTS=`$PANDOC --template $POST_HTML`$POSTS
 else
-	for f in $*; do POSTS=`$PANDOC --template /etc/blogdown/post.html "$f"`$POSTS; done
+	for f in $*; do POSTS=`$PANDOC --template $POST_HTML "$f"`$POSTS; done
 fi
 
-echo "$POSTS" | $PANDOC --template /etc/blogdown/template.html
+echo "$POSTS" | $PANDOC --template $TEMP_HTML
