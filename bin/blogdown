@@ -1,13 +1,7 @@
 #!/bin/bash
-POST_HTML=/etc/blogdown/post.html
-TEMP_HTML=/etc/blogdown/template.html
-
-if [ -n "$STYLE" ]
-then
-	STYLE="-c $STYLE"
-else
-	STYLE=
-fi
+if [ -z "$POST_HTML" ]; then POST_HTML="/etc/blogdown/post.html"; fi
+if [ -z "$TEMP_HTML" ]; then TEMP_HTML="/etc/blogdown/template.html"; fi
+if [ -z "$STYLE" ]; then STYLE= ; fi
 
 PANDOC="pandoc -fmarkdown_github+mmd_title_block -thtml5 --email-obfuscation=references -s $STYLE"
 
