@@ -10,7 +10,8 @@ if [ $# -eq 0 ]
 then
 	POSTS=`$PANDOC --template $POST_HTML`$POSTS
 else
-	for f in $*; do POSTS=`$PANDOC --template $POST_HTML "$f"`$POSTS; done
+	fs="`echo \"$*\" | xargs -n1 | sort -d | xargs`"
+	for f in $fs; do POSTS=`$PANDOC --template $POST_HTML "$f"`$POSTS; done
 fi
 
 echo "$POSTS" | $PANDOC --template $TEMP_HTML
