@@ -1,4 +1,4 @@
-BIN_DIR=/usr/local/bin
+BIN_DIR=/usr/bin
 ETC_DIR=/etc
 
 install:

@@ -9,4 +9,4 @@ else
 	for f in $*; do POSTS=`$PANDOC --template /etc/blogdown/post.html "$f"`$POSTS; done
 fi
 
-echo "$POSTS" | $PANDOC --template /etc/blogdown/page.html
+echo "$POSTS" | $PANDOC --template /etc/blogdown/template.html
