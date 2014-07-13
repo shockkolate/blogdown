@@ -1,1 +1,6 @@
-<div class="post">$body$</div>
+<div class="post">
+$if(date-meta)$
+<h3 class="date">$date$</h3>
+$endif$
+$body$
+</div>

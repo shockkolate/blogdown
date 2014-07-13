@@ -1,5 +1,5 @@
 #!/bin/bash
-PANDOC="pandoc -fmarkdown_github+pandoc_title_block -thtml5 -s --email-obfuscation=references"
+PANDOC="pandoc -fmarkdown_github+mmd_title_block -thtml5 -s --email-obfuscation=references"
 
 POSTS=
 if [ $# -eq 0 ]
