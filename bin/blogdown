@@ -11,7 +11,11 @@ then
 	POSTS=`$PANDOC --template $POST_HTML`$POSTS
 else
 	fs="`echo \"$*\" | xargs -n1 | sort -d | xargs`"
-	for f in $fs; do POSTS=`$PANDOC --template $POST_HTML "$f"`$POSTS; done
+	for f in $fs
+	do
+		fname=`basename "$f"`
+		POSTS=`$PANDOC --template $POST_HTML -V filename="$fname" "$f"`$POSTS
+	done
 fi
 
 echo "$POSTS" | $PANDOC --template $TEMP_HTML
